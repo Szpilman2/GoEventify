@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
+	"goeventify/db"
 	"goeventify/models"
 	"net/http"
-
 	"github.com/gin-gonic/gin"
 )
 
@@ -18,6 +18,8 @@ func main(){
 	╚═════╝  ╚═════╝ ╚══════╝  ╚═══╝  ╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚═╝╚═╝        ╚═╝   
 	`
 	fmt.Println(asciArt)
+
+	db.InitDB()
 
 	server := gin.Default()  // default returns an http engine instance with the logger and recovery middleware already attached.
 	server.GET("/events", getEvents)
