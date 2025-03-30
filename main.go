@@ -5,6 +5,8 @@ import (
 	"goeventify/db"
 	"goeventify/models"
 	"net/http"
+	"strconv"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -23,8 +25,24 @@ func main(){
 
 	server := gin.Default()  // default returns an http engine instance with the logger and recovery middleware already attached.
 	server.GET("/events", getEvents)
+	server.GET("/events/:id", getEvent) //dynamic identifier -> /events/1, /events/2
 	server.POST("/events", createEvent)
 	server.Run(":8080") //start listening to incoming requests to localhost:8080
+}
+
+func getEvent(context *gin.Context){
+	eventId, err := strconv.ParseInt(context.Param("id"), 10, 64)  //gives parameter as string
+	if err != nil {
+		context.JSON(http.StatusBadRequest, gin.H{"message": "could not parse event id."})
+		return
+	}
+
+	event, err := models.GetEventById(eventId)
+	if err != nil {
+		context.JSON(http.StatusInternalServerError, gin.H{"message": "could not fetch event."})
+		return
+	}
+	context.JSON(http.StatusOK, event)
 }
 
 func getEvents(context *gin.Context)  {
