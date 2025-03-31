@@ -18,7 +18,7 @@ func GenerateToken(email string, userId int64) (string, error){
 	return token.SignedString([]byte(secretKey))
 }
 
-func VerifyToken(token string) error {
+func VerifyToken(token string) (int64, error) {
 	// in golang -> interface{} means any type.
 	// claims -> information in token.
 	parsedToken, err := jwt.Parse(token, func(t *jwt.Token) (interface{}, error) {
@@ -29,17 +29,17 @@ func VerifyToken(token string) error {
 		return []byte(secretKey), nil
 	}) //parses the received token and extracts it's information.
 	if err != nil {
-		return errors.New("could not parse token")
+		return 0,errors.New("could not parse token")
 	}
 	tokenIsValid := parsedToken.Valid
 	if !tokenIsValid{
-		return errors.New("invalid token")
+		return 0,errors.New("invalid token")
 	}
-	// claims, ok := parsedToken.Claims(jwt.MapClaims)
-	// if !ok {
-	// 	return errors.New("Invalid token claims")
-	// }
+	claims, ok := parsedToken.Claims.(jwt.MapClaims)
+	if !ok {
+		return 0, errors.New("invalid token claims")
+	}
 	// email := claims["email"].(string)
-	// userId := claims["userId"].(int64)
-	return nil
+	userId := int64(claims["userId"].(float64))
+	return userId, nil
 }
