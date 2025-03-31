@@ -1,10 +1,10 @@
 POST http://localhost:8080/events 
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYWJhbmkyQGdvb2dsZS5jb20iLCJleHAiOjE3NDM0MzE4MzUsInVzZXJJZCI6Mn0.UX3kC3lTYKsQSFJf5RvcT3NEVbgtR931-wc8SzUlni0
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InpleW5hYkBnb29nbGUuY29tIiwiZXhwIjoxNzQzNDU4NDE4LCJ1c2VySWQiOjN9.bI5JDQOywZY3VaBJJBIAM-1aXNJZ0P-ugXkOkkx9_yI
 
 {
-    "name": "pouya2 event",
-    "description": "A test event",
-    "location": "A test location",
+    "name": "apply celebration",
+    "description": "celebration",
+    "location": "ECE UT School",
     "dateTime": "2025-01-01T15:30:00.000Z"
 }
