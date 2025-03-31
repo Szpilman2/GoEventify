@@ -1,9 +1,9 @@
 POST http://localhost:8080/events 
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYWJhbmlAZ29vZ2xlLmNvbSIsImV4cCI6MTc0MzQzMDc2NCwidXNlcklkIjowfQ.hVLoIIXCh_fcWuqIOcbjrwU70VgL74Ss6A_kMqbJf24
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYWJhbmkyQGdvb2dsZS5jb20iLCJleHAiOjE3NDM0MzE4MzUsInVzZXJJZCI6Mn0.UX3kC3lTYKsQSFJf5RvcT3NEVbgtR931-wc8SzUlni0
 
 {
-    "name": "Test event",
+    "name": "pouya event",
     "description": "A test event",
     "location": "A test location",
     "dateTime": "2025-01-01T15:30:00.000Z"
