@@ -3,7 +3,6 @@ package routes
 import (
 	"fmt"
 	"goeventify/models"
-	"goeventify/utils"
 	"net/http"
 	"strconv"
 
@@ -35,22 +34,8 @@ func GetEvents(context *gin.Context) {
 }
 
 func CreateEvent(context *gin.Context) {
-
-	token := context.Request.Header.Get("Authorization")
-	if token == ""{
-		context.JSON(http.StatusUnauthorized, gin.H{"message": "Not authorized"})
-		return
-	}
-
-	user_id, err := utils.VerifyToken(token)
-
-	if err != nil {
-		context.JSON(http.StatusUnauthorized, gin.H{"message":"Not authorized"})
-		return
-	}
-
 	var event models.Event
-	err = context.ShouldBindJSON(&event)
+	err := context.ShouldBindJSON(&event)
 
 	if err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"message": "could not parse data"})
@@ -58,6 +43,7 @@ func CreateEvent(context *gin.Context) {
 	}
 
 	// event.ID = 1
+	user_id := context.GetInt64("userId")
 	event.UserID = user_id
 
 	err = event.Save()
