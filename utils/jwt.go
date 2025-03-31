@@ -24,16 +24,16 @@ func VerifyToken(token string) error {
 	parsedToken, err := jwt.Parse(token, func(t *jwt.Token) (interface{}, error) {
 		_, ok := t.Method.(*jwt.SigningMethodHMAC)
 		if !ok {
-			return nil, errors.New("Unexpected signing method")
+			return nil, errors.New("unexpected signing method")
 		}
 		return secretKey, nil
 	}) //parses the received token and extracts it's information.
 	if err != nil {
-		return errors.New("Could not parse token")
+		return errors.New("could not parse token")
 	}
 	tokenIsValid := parsedToken.Valid
 	if !tokenIsValid{
-		return errors.New("Invalid token")
+		return errors.New("invalid token")
 	}
 	// claims, ok := parsedToken.Claims(jwt.MapClaims)
 	// if !ok {
