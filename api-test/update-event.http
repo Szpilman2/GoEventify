@@ -1,9 +1,10 @@
-PUT http://localhost:8080/events/3
+PUT http://localhost:8080/events/4
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYWJhbmlAZ29vZ2xlLmNvbSIsImV4cCI6MTc0MzQzNzkxOCwidXNlcklkIjoxfQ.SU_rb-5TPJIoHyTeUiS3alR6n--6IOx-5Cz75P46mIg
 
 {
-    "name": "celebration",
-    "description": "celebrating our happiness",
+    "name": "birthday",
+    "description": "celebrating birthday",
     "location": "planet Earth",
     "dateTime": "2025-01-01T15:30:00.000Z"
 }
