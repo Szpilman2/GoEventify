@@ -37,10 +37,10 @@ func (u User) Save() error {
 }
 
 func (u User) ValidateCredentials() error {
-	query := "SELECT password FROM users WHERE email = ?" //because email is unique.
+	query := "SELECT id, password FROM users WHERE email = ?" //because email is unique.
 	row := db.DB.QueryRow(query, u.Email)
 	var retrievedPassword string
-	err := row.Scan(&retrievedPassword)
+	err := row.Scan(&u.Id ,&retrievedPassword)
 
 	if err != nil {
 		return err

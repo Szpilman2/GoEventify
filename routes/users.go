@@ -2,6 +2,7 @@ package routes
 
 import (
 	"goeventify/models"
+	"goeventify/utils"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -35,5 +36,10 @@ func Login(context *gin.Context)  {
 		context.JSON(http.StatusUnauthorized, gin.H{"message": err.Error()})
 		return
 	}
-	context.JSON(http.StatusOK, gin.H{"message":"login successful"})
+	token, err := utils.GenerateToken(user.Email, user.Id)
+	if err != nil {
+		context.JSON(http.StatusInternalServerError, gin.H{"message": "could not authenticate user."})
+		return
+	}
+	context.JSON(http.StatusOK, gin.H{"message":"login successful", "token" : token})
 }
